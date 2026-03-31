@@ -1,8 +1,6 @@
 https://github.com/netology-code/sys-diplom/tree/diplom-zabbix
 #  Дипломная работа по профессии «Системный администратор» - Rinat Serkebaev
 
-ansible-galaxy collection install community.postgresql для работы с постгре
-
 <details>
 <summary>Задание</summary>
 Содержание
@@ -334,7 +332,7 @@ terraform apply
 
 
 
-# Шаг 4: Проверка связи (Bastion & Ping)
+# Шаг 4: Проверка связи
 
 
 ## Проверка
@@ -361,7 +359,7 @@ ansible all -m ping
 - handlers/main.yml - триггеры для перезапуска сервисов при изменении конфигов
 - templates/ - конфигурационные файлы Jinja2
 
-### [main.yml](ansible/site.yml)
+### [main.yml](ansible/main.yml)
 - Главный сценарий, запускающий настройку инфраструктуры
 
 ### [docker_install.yml](ansible/docker_install.yml)
@@ -479,9 +477,9 @@ ansible-playbook -i hosts.ini main.yml
 # Шаг 8: Финальный отчет
 
 ## Предоставлно для проверки дипломной работы:
-- Публичный IP ALB - 158.160.130.91
-- Публичный IP Zabbix - 158.160.122.146
-- Публичный IP Kibana - 158.160.96.24
+- Публичный IP ALB - 158.160.237.11
+- Публичный IP Zabbix - 89.169.151.204
+- Публичный IP Kibana - 178.154.224.105
 - Пароли - [pass.txt](other/pass.txt)
 
 
