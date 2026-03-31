@@ -1,5 +1,5 @@
 ---
-- name: Пересоздание контейнера Kibana
+- name: Recreate Kibana Container
   docker_container:
     name: kibana
     image: kibana:7.17.10
