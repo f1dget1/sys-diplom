@@ -1,0 +1,14 @@
+---
+- name: Пересоздание контейнера Kibana
+  docker_container:
+    name: kibana
+    image: kibana:7.17.10
+    state: started
+    restart_policy: always
+    published_ports:
+      - "5601:5601"
+    env:
+      ELASTICSEARCH_HOSTS: "http://{{ elasticsearch_domain }}:9200"
+      ELASTICSEARCH_USERNAME: "elastic"
+      ELASTICSEARCH_PASSWORD: "{{ kibana_password }}"
+    recreate: yes

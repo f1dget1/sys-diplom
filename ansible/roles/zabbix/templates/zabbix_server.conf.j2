@@ -1,0 +1,21 @@
+### Database
+DBHost=localhost
+DBName=zabbix
+DBUser=zabbix
+DBPassword={{ zabbix_db_password }}
+
+### Basic tuning
+CacheSize=128M
+StartPollers=5
+StartPingers=1
+
+PidFile=/run/zabbix/zabbix_server.pid
+LogType=file
+LogFile=/var/log/zabbix/zabbix_server.log
+LogFileSize=0
+
+# Путь к внешним скриптам и алерту
+SNMPTrapperFile=/var/log/snmptrap/snmptrap.log
+Timeout=4
+LogSlowQueries=3000
+StatsAllowedIP=127.0.0.1

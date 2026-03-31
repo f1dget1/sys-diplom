@@ -1,0 +1,5 @@
+zabbix_server_domain: "zabbix.ru-central1.internal"
+elasticsearch_domain: "elasticsearch.ru-central1.internal"
+kibana_domain: "kibana.ru-central1.internal"
+zabbix_db_password: "ZabbixInitInit291192!"
+kibana_password: "KibanaInitInit291192!"

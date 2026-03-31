@@ -1,0 +1,29 @@
+---
+- name: Установка необходимых зависимостей
+  apt:
+    name: [apt-transport-https, ca-certificates, curl, software-properties-common]
+    state: present
+    update_cache: yes
+
+- name: Добавление GPG-ключа Docker
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Добавление репозитория Docker
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+    state: present
+
+- name: Установка Docker Engine
+  apt:
+    name: docker-ce
+    state: present
+    update_cache: yes
+  notify: Restart Docker
+
+- name: Проверка, что Docker запущен и в автозагрузке
+  service:
+    name: docker
+    state: started
+    enabled: yes

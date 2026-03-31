@@ -1,0 +1,16 @@
+---
+- name: Recreate Elasticsearch Container
+  docker_container:
+    name: elasticsearch
+    image: elasticsearch:7.17.10
+    state: started
+    restart_policy: always
+    published_ports:
+      - "9200:9200"
+      - "9300:9300"
+    env:
+      discovery.type: "single-node"
+      ES_JAVA_OPTS: "-Xms2g -Xmx2g"
+      xpack.security.enabled: "true"
+      ELASTIC_PASSWORD: "{{ kibana_password }}"
+    recreate: yes

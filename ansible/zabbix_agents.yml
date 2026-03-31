@@ -1,0 +1,6 @@
+---
+- name: Установа Zabbix агентов
+  hosts: nginx-web, elasticsearch, kibana
+  become: yes
+  roles:
+    - agents

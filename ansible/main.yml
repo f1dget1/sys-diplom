@@ -1,0 +1,19 @@
+---
+# 1. Docker нужен для ELK
+- import_playbook: docker_install.yml
+
+# 2. Развертывание БД и бэкенда логирования
+- import_playbook: elastic_deploy.yml
+
+# 3. Развертывание фронтенда мониторинга и логирования
+- import_playbook: zabbix_server.yml
+- import_playbook: kibana_deploy.yml
+
+# 4. Веб-серверы и контент
+- import_playbook: install_nginx.yml
+
+# 5. Агенты на все машины, когда серверы уже готовы
+- import_playbook: zabbix_agents.yml
+
+# 6. Развертка и настройка Файлбит на веб-серверы
+- import_playbook: filebeat.yml

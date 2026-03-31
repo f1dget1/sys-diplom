@@ -1,0 +1,6 @@
+---
+- name: Установка Docker
+  hosts: elasticsearch, kibana
+  become: yes
+  roles:
+    - docker

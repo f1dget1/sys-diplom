@@ -1,0 +1,42 @@
+---
+- name: Установка nginx
+  apt:
+    name: nginx
+    state: present
+    update_cache: yes
+
+- name: Удаление симлинка дефолтного конфига nginx
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+  notify: Reload Nginx
+
+- name: Установка кастомного конфига nginx
+  template:
+    src: site.conf.j2
+    dest: /etc/nginx/sites-available/diploma.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Reload Nginx
+
+- name: Развертка кастомного конфига nginx
+  file:
+    src: /etc/nginx/sites-available/diploma.conf
+    dest: /etc/nginx/sites-enabled/diploma.conf
+    state: link
+  notify: Reload Nginx
+
+- name: Развертка index.html
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+    owner: www-data
+    group: www-data
+    mode: '0644'
+
+- name: Проверка что nginx работает
+  service:
+    name: nginx
+    state: started
+    enabled: yes

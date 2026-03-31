@@ -1,0 +1,6 @@
+---
+- name: Запуск контейнера Elasticsearch
+  hosts: elasticsearch
+  become: yes
+  roles:
+    - elastic

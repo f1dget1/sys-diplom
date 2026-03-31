@@ -1,0 +1,17 @@
+server {
+    listen 80 default_server;
+    server_name _;
+
+    root /var/www/html;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    location /basic_status {
+        stub_status;
+        allow 127.0.0.1;
+        deny all;
+    }
+}

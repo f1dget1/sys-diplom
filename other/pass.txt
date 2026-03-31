@@ -1,0 +1,9 @@
+Zabbix 89.169.151.204/zabbix
+login: Admin
+passwd: ZabbixInitInit291192!
+
+kibana 178.154.224.105:5601
+login: elastic
+passwd: KibanaInitInit291192!
+
+ALB 158.160.237.11

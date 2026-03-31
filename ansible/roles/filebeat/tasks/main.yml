@@ -1,0 +1,30 @@
+---
+- name: Скачивание Filebeat из зеркала Яндекса
+  get_url:
+    url: "https://mirror.yandex.ru/mirrors/elastic/7/pool/main/f/filebeat/filebeat-7.17.10-amd64.deb"
+    dest: "/tmp/filebeat-7.17.10.deb"
+#    validate_certs: no
+
+- name: Установка Filebeat из deb-пакета
+  apt:
+    deb: "/tmp/filebeat-7.17.10.deb"
+
+- name: Развертка конфигурации filebeat из шаблона
+  template:
+    src: templates/filebeat.j2
+    dest: /etc/filebeat/filebeat.yml
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart Filebeat
+
+- name: Включение модуля Nginx
+  command: filebeat modules enable nginx
+  register: nginx_module_result
+  changed_when: "'already enabled' not in nginx_module_result.stdout" # Чтобы не было ложного changed
+
+- name: Включение автозагрузки Filebeat
+  service:
+    name: filebeat
+    state: started
+    enabled: yes

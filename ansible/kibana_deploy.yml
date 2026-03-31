@@ -1,0 +1,30 @@
+---
+- name: Start Kibana Container
+  hosts: kibana
+  become: yes
+  tasks:
+    - name: Install Docker SDK for Python
+      become: true
+      apt:
+        name: python3-pip
+        state: present
+        update_cache: yes
+
+    - name: Install Docker Python library via APT
+      ansible.builtin.apt:
+        name: python3-docker
+        state: present
+        update_cache: yes
+
+    - name: Run Kibana
+      docker_container:
+        name: kibana
+        image: kibana:7.17.10
+        state: started
+        restart_policy: always
+        published_ports:
+          - "5601:5601"
+        env:
+          ELASTICSEARCH_HOSTS: "http://{{ elasticsearch_domain }}:9200"
+          ELASTICSEARCH_USERNAME: "elastic"
+          ELASTICSEARCH_PASSWORD: "{{ kibana_password }}"

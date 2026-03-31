@@ -1,0 +1,6 @@
+---
+- name: Установка и конфигурация nginx
+  hosts: nginx-web
+  become: yes
+  roles:
+    - nginx

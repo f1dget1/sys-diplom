@@ -1,0 +1,6 @@
+---
+- name: Установка и конфигурация filebeat
+  hosts: nginx-web
+  become: yes
+  roles:
+    - filebeat
