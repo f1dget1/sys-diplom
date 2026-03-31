@@ -1,8 +1,10 @@
-.terraform/
-*.tfstate
-terraform.tfstate.backup
-*.tfstate.*.backup
-*.tfvars
-*.tfvars.json
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.backup
+**/*.tfstate.*.backup
+**/*.tfvars
+**/*.tfvars.json
 .terraformrc
 terraform.rc
+**/crash.log
+
